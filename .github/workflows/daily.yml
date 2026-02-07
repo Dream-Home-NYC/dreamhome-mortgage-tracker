@@ -1,0 +1,28 @@
+name: Daily Mortgage Update
+on:
+  schedule:
+    - cron: '0 13 * * *' # 8:00 AM EST
+  workflow_dispatch:
+
+jobs:
+  scrape_and_report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: |
+          pip install playwright
+          playwright install chromium
+      - name: Run Scraper
+        run: python scraper.py
+      - name: Deploy to Repo
+        run: |
+          git config --global user.name "DreamHome-Bot"
+          git config --global user.email "bot@dreamhome.nyc"
+          git add daily_report.md
+          git commit -m "Updated rates for $(date)" || exit 0
+          git push
