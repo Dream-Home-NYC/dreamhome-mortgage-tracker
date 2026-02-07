@@ -1,0 +1,1 @@
+[![Daily Mortgage Update](https://github.com/Dream-Home-NYC/dreamhome-mortgage-tracker/actions/workflows/daily.yml/badge.svg)](https://github.com/Dream-Home-NYC/dreamhome-mortgage-tracker/actions/workflows/daily.yml)
